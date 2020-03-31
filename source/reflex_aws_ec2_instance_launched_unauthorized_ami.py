@@ -26,7 +26,7 @@ class InstanceLaunchedUnauthorizedAmi(AWSRule):
         """
         compliance = True
         for item in self.instances_set:
-            if item["imageId"] != GOLDEN_AMI_ID
+            if item["imageId"] != GOLDEN_AMI_ID:
                 compliance = False
         return compliance
 
