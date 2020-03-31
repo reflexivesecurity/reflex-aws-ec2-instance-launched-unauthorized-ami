@@ -1,4 +1,4 @@
-variable "sns_topic_arn" { 
+variable "sns_topic_arn" {
   description = "SNS topic arn of central or local sns topic"
   type        = string
 }
@@ -8,3 +8,7 @@ variable "reflex_kms_key_id" {
   type        = string
 }
 
+variable "ami_id" {
+  description = "AMI ID that will be designated as the golden ami"
+  type        = string
+}
