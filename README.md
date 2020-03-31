@@ -1,5 +1,5 @@
 # reflex-aws-ec2-instance-launched-unauthorized-ami
-TODO: Write a brief description of your rule and what it does.
+Rule to detect when an instance was launched using an AMI that wasn't specified.
 
 ## Usage
 To use this rule either add it to your `reflex.yaml` configuration file:  

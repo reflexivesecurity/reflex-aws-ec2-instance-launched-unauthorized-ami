@@ -6,23 +6,17 @@ import os
 import boto3
 from reflex_core import AWSRule
 
+GOLDEN_AMI_ID = os.environ.get('GOLDEN_AMI_ID')
 
 class InstanceLaunchedUnauthorizedAmi(AWSRule):
-    """ TODO: A description for your rule """
-
-    # TODO: Instantiate whatever boto3 client you'll need, if any.
-    # Example:
-    # client = boto3.client("s3")
+    """ Rule to determine if an EC2 instance is ran with an unspecified AMI """
 
     def __init__(self, event):
         super().__init__(event)
 
     def extract_event_data(self, event):
         """ Extract required event data """
-        # TODO: Extract any data you need from the triggering event.
-        #
-        # Example:
-        # self.bucket_name = event["detail"]["requestParameters"]["bucketName"]
+        self.instances_set = event["detail"]["responseElements"]["instancesSet"]["items"]
 
     def resource_compliant(self):
         """
@@ -30,15 +24,15 @@ class InstanceLaunchedUnauthorizedAmi(AWSRule):
 
         Return True if it is compliant, and False if it is not.
         """
-        # TODO: Implement a check for determining if the resource is compliant
+        compliance = True
+        for item in self.instances_set:
+            if item["imageId"] != GOLDEN_AMI_ID
+                compliance = False
+        return compliance
 
     def get_remediation_message(self):
         """ Returns a message about the remediation action that occurred """
-        # TODO: Provide a human readable message describing what occured. This
-        # message is sent in all notifications.
-        #
-        # Example:
-        # return f"The S3 bucket {self.bucket_name} was unencrypted. AES-256 encryption was enabled."
+        return f"An instance was launched that did not use the designated AMI ID: {GOLDEN_AMI_ID}."
 
 
 def lambda_handler(event, _):

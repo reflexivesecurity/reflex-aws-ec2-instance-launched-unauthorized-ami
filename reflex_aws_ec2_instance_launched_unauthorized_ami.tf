@@ -1,10 +1,25 @@
 module "reflex_aws_ec2_instance_launched_unauthorized_ami" {
   source           = "git::https://github.com/cloudmitigator/reflex-engine.git//modules/cwe_lambda?ref=v0.5.4"
   rule_name        = "InstanceLaunchedUnauthorizedAmi"
-  rule_description = "TODO: Provide rule description"
+  rule_description = "Rule to detect when an EC2 instance is launched using an unauthorized AMI"
 
   event_pattern = <<PATTERN
-# TODO: Provide event pattern
+{
+  "source": [
+    "aws.ec2"
+  ],
+  "detail-type": [
+    "AWS API Call via CloudTrail"
+  ],
+  "detail": {
+    "eventSource": [
+      "ec2.amazonaws.com"
+    ],
+    "eventName": [
+      "RunInstances"
+    ]
+  }
+}
 PATTERN
 
   function_name   = "InstanceLaunchedUnauthorizedAmi"
@@ -13,11 +28,8 @@ PATTERN
   lambda_runtime  = "python3.7"
   environment_variable_map = {
     SNS_TOPIC = var.sns_topic_arn,
-
+    GOLDEN_AMI_ID = var.golden_ami_id
   }
-  custom_lambda_policy = <<EOF
-# TODO: Provide required lambda permissions policy
-EOF
 
 
 

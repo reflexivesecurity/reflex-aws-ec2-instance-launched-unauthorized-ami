@@ -8,7 +8,8 @@ variable "reflex_kms_key_id" {
   type        = string
 }
 
-variable "ami_id" {
+variable "golden_ami_id" {
   description = "AMI ID that will be designated as the golden ami"
+  default     = "ami-REPLACE_WITH_GOLDEN_AMI_ID"
   type        = string
 }
