@@ -10,10 +10,11 @@ To get started using Reflex, check out [the Reflex Documentation](https://docs.c
 To use this rule either add it to your `reflex.yaml` configuration file:  
 ```
 rules:
-  - ec2-instance-launched-unauthorized-ami:
-      configuration:
-          golden_ami_id: ami-1234567890abcdefg
-      version: latest
+  aws:
+    - ec2-instance-launched-unauthorized-ami:
+        configuration:
+            golden_ami_id: ami-1234567890abcdefg
+        version: latest
 ```
 
 or add it directly to your Terraform:  
