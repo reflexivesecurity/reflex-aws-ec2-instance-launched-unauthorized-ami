@@ -1,5 +1,5 @@
 module "reflex_aws_ec2_instance_launched_unauthorized_ami" {
-  source           = "git::https://github.com/cloudmitigator/reflex-engine.git//modules/cwe_lambda?ref=v0.5.7"
+  source           = "git::https://github.com/cloudmitigator/reflex-engine.git//modules/cwe_lambda?ref=v0.6.0"
   rule_name        = "InstanceLaunchedUnauthorizedAmi"
   rule_description = "Rule to detect when an EC2 instance is launched using an unauthorized AMI"
 
