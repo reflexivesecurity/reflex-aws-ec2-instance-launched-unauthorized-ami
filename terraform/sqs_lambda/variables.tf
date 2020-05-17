@@ -13,3 +13,12 @@ variable "golden_ami_id" {
   default     = "ami-REPLACE_WITH_GOLDEN_AMI_ID"
   type        = string
 }
+variable "cloudwatch_event_rule_id" {
+  description = "Easy name of CWE"
+  type        = string
+}
+
+variable "cloudwatch_event_rule_arn" {
+  description = "Full arn of CWE"
+  type        = string
+}
